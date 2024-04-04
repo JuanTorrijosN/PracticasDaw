@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <select name="personajes" id="personajes">Selecciona personaje</select>
+    <option value=""></option>
+    <div id="datos">
+    <img src="" alt="err" id="img"/>
+    </div>
+    <script>
+var personajillos = document.getElementById('personajes')
+
+        fetch("http://192.168.90.220:5500/Rick/datos.json", [])
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+            mostrarPersonaje(data)})
+        .catch(function (err) {
+        console.log(err);
+        });
+
+
+        personajillos.addEventListener("change",obtenerUrl)
+        function obtenerUrl(){
+            fetch("http://192.168.90.220:5500/Rick/datos.json", [])
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {insertarImagen(data)})
+        .catch(function (err) {
+        console.log(err);
+        });
+        }
+        function insertarImagen(datos){
+            var img = document.getElementById('img')
+            var nombre = personajillos.value
+            for (let i = 0; i < datos.length; i++) {
+                if (nombre === datos[i].nombre)
+                img.src = datos[i].url
+
+            }
+        }
+
+        
+
+        function mostrarPersonaje(datos){
+            for (let i = 0; i < datos.length; i++) {
+                personajillos.innerHTML += `<option value="${datos[i].nombre}">${datos[i].nombre}</option>`
+                
+            }
+        }
+
+
+    </script>
+</body>
+</html>

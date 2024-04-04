@@ -1,0 +1,10 @@
+[
+    {
+    "nombre":"Rick",
+    "url":"http://192.168.90.220:5500/Rick/Rick.png"
+    },
+    {
+    "nombre":"morty",
+    "url":"http://192.168.90.220:5500/Rick/Morty.png"
+    }
+    ]
